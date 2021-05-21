@@ -10,23 +10,14 @@ const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 })
 const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
 scene.add(sphere)
 
-
-const sphere1 = new THREE.Mesh(sphereGeometry, sphereMaterial)
-sphere1.position.set(1,1, 1)
-scene.add(sphere1)
-
-
 const sizes = {
     width: window.innerWidth,
     height: window.innerHeight
 }
 
-
 const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 200)
 camera.position.z = 3
 scene.add(camera)
-
-
 
 window.addEventListener('resize', () => {
 
@@ -36,9 +27,6 @@ window.addEventListener('resize', () => {
     camera.aspect = sizes.width / sizes.height
     camera.updateProjectionMatrix()
 
-    renderer.setSize( window.innerWidth, window.innerHeight );
-
-
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 })
@@ -46,10 +34,11 @@ window.addEventListener('resize', () => {
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
+
 renderer.setSize(sizes.width, sizes.height)
 renderer.render(scene, camera)
 
-const tick = () => {
+const animate = () => {
 
     requestAnimationFrame(animate)
     renderer.render(scene, camera)
